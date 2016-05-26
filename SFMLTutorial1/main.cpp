@@ -4,6 +4,13 @@ int main()
 {
 	sf::RenderWindow window(sf::VideoMode(640, 480), "The Title");
 
+	window.setFramerateLimit(60);
+
+	sf::RectangleShape rectangle(sf::Vector2f(50, 50));
+	rectangle.setFillColor(sf::Color::Red);
+	rectangle.setOrigin(sf::Vector2f(25, 25));
+	rectangle.setPosition(sf::Vector2f(50, 50));
+
 	while (window.isOpen())
 	{
 		// Handle events
@@ -20,6 +27,7 @@ int main()
 
 		// Render cycle
 		window.clear(sf::Color::Black);
+		window.draw(rectangle);
 
 		// Render objects
 		window.display();
