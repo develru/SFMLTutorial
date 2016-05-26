@@ -27,8 +27,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{4D3ED68A-A28E-49A8-B978-C88B1A92C725}</ProjectGuid>
-    <RootNamespace>SFMLTutorial1</RootNamespace>
+    <ProjectGuid>{9C89D8FD-BC81-44DA-99BE-78411B554C59}</ProjectGuid>
+    <RootNamespace>SFMLTutorial2</RootNamespace>
     <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -116,7 +116,6 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\Users\Richard Schwalk\Documents\Development\lib\SFML-2.3.2\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
