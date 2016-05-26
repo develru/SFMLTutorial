@@ -24,6 +24,8 @@ int main()
 		}
 
 		// Update scene
+		rectangle.rotate(1.5f);
+		rectangle.move(sf::Vector2f(1, 0));
 
 		// Render cycle
 		window.clear(sf::Color::Black);
