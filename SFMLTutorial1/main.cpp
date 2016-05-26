@@ -1,15 +1,25 @@
 #include <SFML\Graphics.hpp>
 
+void initShape(sf::RectangleShape& shape, sf::Vector2f const& pos, sf::Color const& color)
+{
+	shape.setFillColor(color);
+	shape.setPosition(pos);
+	shape.setOrigin(shape.getSize() * 0.5f);
+}
+
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(640, 480), "The Title");
+	sf::RenderWindow window(sf::VideoMode(480, 180), "Bad Squares");
 
 	window.setFramerateLimit(60);
 
-	sf::RectangleShape rectangle(sf::Vector2f(50, 50));
-	rectangle.setFillColor(sf::Color::Red);
-	rectangle.setOrigin(sf::Vector2f(25, 25));
-	rectangle.setPosition(sf::Vector2f(50, 50));
+	sf::Vector2f startPos = sf::Vector2f(50, 50);
+	sf::RectangleShape playerRect(sf::Vector2f(50, 50));
+	initShape(playerRect, startPos, sf::Color::Green);
+	sf::RectangleShape targetRect(sf::Vector2f(50, 50));
+	initShape(targetRect, sf::Vector2f(400, 50), sf::Color::Blue);
+	sf::RectangleShape badRect(sf::Vector2f(50, 100));
+	initShape(badRect, sf::Vector2f(250, 50), sf::Color::Red);
 
 	while (window.isOpen())
 	{
@@ -25,15 +35,34 @@ int main()
 		}
 
 		// Update scene
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+		
+		// Always move right
+		playerRect.move(1, 0);
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
 		{
-			rectangle.rotate(1.5f);
-			rectangle.move(sf::Vector2f(1, 0));
+			playerRect.move(0, 1);
+		}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
+		{
+			playerRect.move(0, -1);
+		}
+
+		// Target reached. You win. Exit the game.
+		if (playerRect.getGlobalBounds().intersects(targetRect.getGlobalBounds()))
+		{
+			window.close();
+		}
+		// Bad square intersect. You lose. Restart.
+		if (playerRect.getGlobalBounds().intersects(badRect.getGlobalBounds()))
+		{
+			playerRect.setPosition(startPos);
 		}
 
 		// Render cycle
 		window.clear(sf::Color::Black);
-		window.draw(rectangle);
+		window.draw(playerRect);
+		window.draw(badRect);
+		window.draw(targetRect);
 
 		// Render objects
 		window.display();
